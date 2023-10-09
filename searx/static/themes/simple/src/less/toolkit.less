@@ -257,12 +257,12 @@ ul.tabs {
   & > label,
   & > li > a {
     order: 1;
-    padding: 0.7em;
-    margin: 0 0.7em;
+    padding: 0.7em 1em;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border: solid var(--color-toolkit-tabs-label-border);
     border-width: 0 0 2px 0;
+    transition: all 0.15s;
     color: unset;
 
     .disable-user-select();
@@ -337,7 +337,7 @@ select {
   .ltr-margin-right(1rem);
   margin-bottom: 0;
   .ltr-margin-left(0);
-  padding: 0.2rem !important;
+  padding: 0.2rem 0.2rem 0.2rem 0.8rem !important;
   color: var(--color-search-font);
   font-size: 0.9rem;
   z-index: 2;
