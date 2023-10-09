@@ -7,6 +7,7 @@
 // stylelint-disable no-descending-specificity
 
 @import (inline) "../../node_modules/normalize.css/normalize.css";
+@import "fonts.less";
 @import "definitions.less";
 @import "mixins.less";
 @import "code.less";
@@ -48,14 +49,14 @@
 }
 
 .ion-icon-big {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   .ion-icon;
 }
 
 // Main LESS-Code
 html {
-  font-family: sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI Variable", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", system-ui, sans-serif;
   font-size: 0.9em;
   .text-size-adjust;
 
@@ -65,6 +66,7 @@ html {
   margin: 0;
 
   scroll-behavior: smooth;
+  line-height: 1.2;
 }
 
 body,
@@ -88,7 +90,7 @@ main {
 
 .page_with_header {
   margin: 2em auto;
-  width: 85em;
+  width: 92em;
 }
 
 footer {
@@ -106,6 +108,15 @@ footer {
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Jones, Metropolis, Clarity City, "Red Hat Display", "Red Hat Text", Gilroy, Montserrat, system-ui, sans-serif;
+}
+
 .page_with_header .logo {
   height: 40px;
 }
@@ -117,10 +128,16 @@ input[type="submit"],
   display: inline-block;
   background: var(--color-btn-background);
   color: var(--color-btn-font);
+  font-weight: 600;
+  transition: all 0.15s;
   .rounded-corners;
 
   border: 0;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.75;
+  }
 }
 
 a {
@@ -168,8 +185,9 @@ article[data-vim-selected].category-social {
 }
 
 .result {
-  margin: @results-margin 0;
+  margin: 0;
   padding: @result-padding;
+  transition: all 0.15s;
   .ltr-border-left(0.2rem solid transparent);
 
   h3 {
@@ -180,7 +198,7 @@ article[data-vim-selected].category-social {
 
     a {
       color: var(--color-result-link-font);
-      font-weight: normal;
+      font-weight: 500;
       font-size: 1.1em;
 
       &:visited {
@@ -416,6 +434,7 @@ article[data-vim-selected].category-social {
   flex-wrap: wrap;
   justify-content: flex-end;
   color: var(--color-result-engines-font);
+  margin-top: 1rem;
 
   span {
     font-size: smaller;
@@ -540,7 +559,8 @@ article[data-vim-selected].category-social {
     "pagination sidebar";
 }
 
-#results #sidebar *:first-child {
+#results #sidebar *:first-child,
+#results #urls *:first-child {
   margin-top: 0;
 }
 
@@ -746,6 +766,8 @@ summary.title {
 }
 
 #search_url {
+  margin-top: 8px;
+
   div.selectable_url {
     pre {
       float: left;
@@ -764,9 +786,9 @@ summary.title {
 
 #links_on_top {
   position: absolute;
-  .ltr-right(1rem);
+  .ltr-right(1.8rem);
   .ltr-text-align-right();
-  top: 2.7rem;
+  top: 2.2rem;
   padding: 0;
   border: 0;
   display: flex;
@@ -829,17 +851,19 @@ summary.title {
   font-size: 1em;
   background: var(--color-backtotop-background);
   position: fixed;
-  bottom: 8rem;
-  .ltr-left(@results-width + @results-offset + (0.5 * @results-gap - 1.2em));
+  bottom: 2rem;
+  right: 2rem;
   transition: opacity 0.5s;
+  border-radius: 100%;
   opacity: 0;
-  pointer-events: none;
-  .rounded-corners;
 
   a {
-    display: block;
+    display: grid;
     margin: 0;
-    padding: 0.7em;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
   }
 
   a,
@@ -852,7 +876,6 @@ summary.title {
 
 #results.scrolling #backToTop {
   opacity: 1;
-  pointer-events: all;
 }
 
 /*
@@ -867,7 +890,7 @@ summary.title {
   }
 
   .page_with_header {
-    margin: 2rem 0.5rem;
+    margin: 2rem 1.5rem;
     width: auto;
   }
 
@@ -946,7 +969,7 @@ summary.title {
   }
 
   #main_results div#results {
-    margin: 0 auto;
+    margin: 1rem auto 0 auto;
     justify-content: center;
     display: grid;
     grid-template-columns: @results-width;
@@ -973,7 +996,8 @@ summary.title {
   body.results_endpoint {
     #links_on_top {
       .link_on_top_about,
-      .link_on_top_donate {
+      .link_on_top_donate,
+      .link_on_top_preferences {
         display: none;
       }
     }
@@ -1043,12 +1067,12 @@ summary.title {
 
   #main_results div#results {
     grid-template-columns: 100%;
-    margin: 0 auto;
+    margin: 1rem 0 0 0;
   }
 
   #links_on_top {
-    top: 1.4rem;
-    .ltr-right(10px);
+    top: 0.8rem;
+    .ltr-right(0.7rem);
   }
 
   #main_index #links_on_top {
@@ -1065,16 +1089,18 @@ summary.title {
     margin: 2rem 1rem 0 1rem !important;
   }
 
-  article[data-vim-selected] {
-    border: 1px solid var(--color-result-vim-arrow);
+  article {
     .rounded-corners;
+  }
+
+  article[data-vim-selected] {
+    border-left: 3px solid var(--color-result-vim-arrow);
+    .rounded-right-corners;
   }
 
   .result {
     background: var(--color-result-background);
-    border: 1px solid var(--color-result-background);
-    margin: 1rem 10px;
-    .rounded-corners;
+    margin: 1rem 1rem;
   }
 
   .result-images {

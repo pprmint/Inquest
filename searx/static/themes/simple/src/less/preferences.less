@@ -21,7 +21,8 @@ table {
   }
 
   fieldset {
-    margin: 8px;
+    margin: 30px 0;
+    padding: 0;
     border: none;
   }
 
@@ -56,6 +57,7 @@ table {
 
     select,
     input[type="text"] {
+      transition: all 0.15s;
       font-size: inherit !important;
       margin-top: 0;
       .ltr-margin-right(1rem);
@@ -70,7 +72,7 @@ table {
     select:focus,
     input:focus {
       outline: none;
-      box-shadow: 0 0 1px 1px var(--color-btn-background);
+      box-shadow: 0 0 0 2px var(--color-btn-background);
     }
   }
 
@@ -168,13 +170,19 @@ table {
   .preferences_back {
     background: none repeat scroll 0 0 var(--color-btn-background);
     color: var(--color-btn-font);
+    font-weight: 600;
     border: 0 none;
+    transition: all 0.15s;
     .rounded-corners;
 
     cursor: pointer;
     display: inline-block;
     margin: 2px 4px;
-    padding: 0.7em;
+    padding: 0.7em 1em;
+
+    &:hover {
+      opacity: 0.75;
+    }
 
     a {
       color: var(--color-settings-return-font);
@@ -217,6 +225,11 @@ table {
 @media screen and (max-width: @tablet) {
   .preferences_back {
     clear: both;
+  }
+
+  #main_preferences .description {
+    width: 100%;
+    float: right;
   }
 
   .engine-tooltip {
