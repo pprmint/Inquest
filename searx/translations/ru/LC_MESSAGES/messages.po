@@ -16,23 +16,25 @@
 # BalkanMadman <zurabid2016@gmail.com>, 2023.
 # AHOHNMYC <lqwh2h2cwa@protonmail.com>, 2023.
 # return42 <markus.heiser@darmarit.de>, 2023.
+# 0que <0que@users.noreply.translate.codeberg.org>, 2023.
 msgid ""
 msgstr ""
-"Project-Id-Version:  searx\n"
+"Project-Id-Version: searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-05 09:01+0000\n"
-"PO-Revision-Date: 2023-09-29 07:07+0000\n"
-"Last-Translator: return42 <markus.heiser@darmarit.de>\n"
+"POT-Creation-Date: 2023-11-11 15:25+0000\n"
+"PO-Revision-Date: 2023-11-23 06:13+0000\n"
+"Last-Translator: 0que <0que@users.noreply.translate.codeberg.org>\n"
+"Language-Team: Russian <https://translate.codeberg.org/projects/searxng/"
+"searxng/ru/>\n"
 "Language: ru\n"
-"Language-Team: Russian "
-"<https://translate.codeberg.org/projects/searxng/searxng/ru/>\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) "
-"|| (n%100>=11 && n%100<=14)? 2 : 3);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.12.1\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || ("
+"n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Weblate 5.1\n"
+"Generated-By: Babel 2.13.1\n"
 
 #. CONSTANT_NAMES['NO_SUBGROUPING']
 #: searx/searxng.msg
@@ -102,7 +104,7 @@ msgstr "Наука"
 #. CATEGORY_GROUPS['APPS']
 #: searx/searxng.msg
 msgid "apps"
-msgstr "Программы"
+msgstr "Приложения"
 
 #. CATEGORY_GROUPS['DICTIONARIES']
 #: searx/searxng.msg
@@ -159,34 +161,34 @@ msgstr "Светлая"
 msgid "dark"
 msgstr "Тёмная"
 
-#: searx/webapp.py:331
+#: searx/webapp.py:332
 msgid "No item found"
 msgstr "Ничего не найдено"
 
 #: searx/engines/qwant.py:280
-#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:333
+#: searx/templates/simple/result_templates/images.html:20 searx/webapp.py:334
 msgid "Source"
 msgstr "Источник"
 
-#: searx/webapp.py:335
+#: searx/webapp.py:336
 msgid "Error loading the next page"
 msgstr "Не удалось загрузить следующую страницу"
 
-#: searx/webapp.py:492 searx/webapp.py:888
+#: searx/webapp.py:493 searx/webapp.py:889
 msgid "Invalid settings, please edit your preferences"
 msgstr "Неправильные параметры, пожалуйста измените ваши настройки"
 
-#: searx/webapp.py:508
+#: searx/webapp.py:509
 msgid "Invalid settings"
 msgstr "Неверные настройки"
 
-#: searx/webapp.py:585 searx/webapp.py:667
+#: searx/webapp.py:586 searx/webapp.py:668
 msgid "search error"
 msgstr "ошибка поиска"
 
 #: searx/webutils.py:34
 msgid "timeout"
-msgstr "таймаут"
+msgstr "истекло время ожидания"
 
 #: searx/webutils.py:35
 msgid "parsing error"
@@ -198,11 +200,11 @@ msgstr "ошибка протокола HTTP"
 
 #: searx/webutils.py:37
 msgid "network error"
-msgstr "сетевая ошибка"
+msgstr "ошибка сети"
 
 #: searx/webutils.py:38
 msgid "SSL error: certificate validation has failed"
-msgstr "ошибка SSL: отсутствует действительность сертификата"
+msgstr "ошибка SSL: проверка сертификата провалена"
 
 #: searx/webutils.py:40
 msgid "unexpected crash"
@@ -242,7 +244,7 @@ msgstr "Приостановлено"
 
 #: searx/webutils.py:317
 msgid "{minutes} minute(s) ago"
-msgstr "{minutes} минут(а) назад"
+msgstr "{minutes} минут(-у) назад"
 
 #: searx/webutils.py:318
 msgid "{hours} hour(s), {minutes} minute(s) ago"
@@ -282,19 +284,19 @@ msgstr "Канал"
 
 #: searx/engines/radio_browser.py:104
 msgid "radio"
-msgstr ""
+msgstr "радио"
 
 #: searx/engines/radio_browser.py:106
 msgid "bitrate"
-msgstr ""
+msgstr "битрейт"
 
 #: searx/engines/radio_browser.py:107
 msgid "votes"
-msgstr ""
+msgstr "голоса"
 
 #: searx/engines/radio_browser.py:108
 msgid "clicks"
-msgstr ""
+msgstr "нажатия"
 
 #: searx/engines/seekr.py:194 searx/engines/zlibrary.py:129
 msgid "Language"
@@ -391,8 +393,8 @@ msgid ""
 "Displays your IP if the query is \"ip\" and your user agent if the query "
 "contains \"user agent\"."
 msgstr ""
-"Показывает IP-адрес по запросу \"ip\" и версию браузера по запросу \"user"
-" agent\"."
+"Показывать ваш IP-адрес по запросу \"ip\" и информацию о браузере по запросу "
+"\"user agent\"."
 
 #: searx/plugins/tor_check.py:25
 msgid "Tor check plugin"
@@ -461,7 +463,7 @@ msgstr "Настройки"
 
 #: searx/templates/simple/base.html:67
 msgid "Powered by"
-msgstr "Основано на"
+msgstr "Работает на"
 
 #: searx/templates/simple/base.html:67
 msgid "a privacy-respecting, open metasearch engine"
@@ -746,7 +748,7 @@ msgstr "Комментарии"
 
 #: searx/templates/simple/elements/apis.html:3
 msgid "Download results"
-msgstr "Загрузить результаты"
+msgstr "Скачать результаты"
 
 #: searx/templates/simple/elements/engines_msg.html:7
 msgid "Messages from the search engines"
@@ -763,6 +765,14 @@ msgstr "Поисковые системы не могут получить ре�
 #: searx/templates/simple/elements/search_url.html:3
 msgid "Search URL"
 msgstr "Ссылка поиска"
+
+#: searx/templates/simple/elements/search_url.html:4
+msgid "Copied"
+msgstr "Скопировано"
+
+#: searx/templates/simple/elements/search_url.html:4
+msgid "Copy"
+msgstr "Копировать"
 
 #: searx/templates/simple/elements/suggestions.html:3
 msgid "Suggestions"
@@ -842,7 +852,7 @@ msgstr "в данный момент cookie-файлы не определены
 
 #: searx/templates/simple/messages/no_results.html:3
 msgid "Sorry!"
-msgstr "Грусть-печаль!"
+msgstr "Извините!"
 
 #: searx/templates/simple/messages/no_results.html:4
 msgid "No results were found. You can try to:"
@@ -895,7 +905,7 @@ msgstr "Список плагинов."
 
 #: searx/templates/simple/preferences/autocomplete.html:2
 msgid "Autocomplete"
-msgstr "Подсказки"
+msgstr "Автодополнение"
 
 #: searx/templates/simple/preferences/autocomplete.html:15
 msgid "Find stuff as you type"
@@ -979,7 +989,7 @@ msgstr "Поддерживает выбранный язык"
 
 #: searx/templates/simple/preferences/engines.html:23
 msgid "Weight"
-msgstr "Вес/масса"
+msgstr "Вес"
 
 #: searx/templates/simple/preferences/engines.html:27
 msgid "Max time"
@@ -1692,4 +1702,3 @@ msgstr "скрыть видео"
 #~ "мы не нашли никаких результатов. "
 #~ "Попробуйте изменить запрос или поищите в"
 #~ " других категориях."
-

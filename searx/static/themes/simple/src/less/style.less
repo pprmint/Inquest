@@ -460,6 +460,7 @@ article[data-vim-selected].category-social {
 
   & > a {
     position: relative;
+    outline: none;
   }
 
   img {
@@ -751,8 +752,17 @@ summary.title {
 
   div.selectable_url {
     pre {
+      float: left;
       width: 200em;
     }
+  }
+
+  button#copy_url {
+    float: right;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    border-radius: 0.3rem;
+    display: none;    // will be shown by JS.
   }
 }
 
