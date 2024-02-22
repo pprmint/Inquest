@@ -69,6 +69,21 @@ table {
       width: 14rem;
     }
 
+    input[type="text"] {
+      width: 12.4rem;
+      color: var(--color-toolkit-input-text-font);
+      border: none;
+      background: none repeat scroll 0 0 var(--color-toolkit-select-background);
+      padding: 0.2rem 0.8rem;
+      height: 2rem;
+      .rounded-corners-tiny;
+
+      &:hover,
+      &:focus {
+        background-color: var(--color-toolkit-select-background-hover);
+      }
+    }
+
     select:focus,
     input:focus {
       outline: none;
