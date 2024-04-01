@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# lint: pylint
 """Wikimedia Commons (images)
 
 """
@@ -62,7 +61,7 @@ def response(resp):
             'title': title,
             'content': item["snippet"],
             'img_src': imageinfo["url"],
-            'img_format': f'{imageinfo["width"]} x {imageinfo["height"]}',
+            'resolution': f'{imageinfo["width"]} x {imageinfo["height"]}',
             'thumbnail_src': imageinfo["thumburl"],
             'template': 'images.html',
         }

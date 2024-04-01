@@ -192,7 +192,7 @@ outgoing:
   #
   # Extra seconds to add in order to account for the time taken by the proxy
   #
-  #  extra_proxy_timeout: 10.0
+  #  extra_proxy_timeout: 10
   #
   # uncomment below section only if you have more than one network interface
   # which can be the source of outgoing search requests
@@ -314,9 +314,9 @@ engines:
   #   engine: annas_archive
   #   shortcut: aaa
   #   # https://docs.searxng.org/dev/engines/online/annas_archive.html
-  #   aa_content: 'journal_article' # book_any .. magazine, standards_document
+  #   aa_content: 'magazine' # book_fiction, book_unknown, book_nonfiction, book_comic
   #   aa_ext: 'pdf'  # pdf, epub, ..
-  #   aa_sort: 'newest'  # newest, oldest, largest, smallest
+  #   aa_sort: oldest'  # newest, oldest, largest, smallest
 
   - name: apk mirror
     engine: apkmirror
@@ -477,6 +477,12 @@ engines:
   #   # get your API key from: https://core.ac.uk/api-keys/register/
   #   api_key: 'unset'
 
+  - name: cppreference
+    engine: cppreference
+    shortcut: cpp
+    paging: false
+    disabled: true
+
   - name: crossref
     engine: crossref
     shortcut: cr
@@ -559,6 +565,16 @@ engines:
       require_api_key: false
       results: JSON
       language: de
+    tests:
+      bahnhof:
+        matrix:
+          query: berlin
+          lang: en
+        result_container:
+          - not_empty
+          - ['one_title_contains', 'Berlin Hauptbahnhof']
+        test:
+          - unique_results
 
   - name: deezer
     engine: deezer
@@ -924,8 +940,7 @@ engines:
 
   - name: hoogle
     engine: xpath
-    paging: true
-    search_url: https://hoogle.haskell.org/?hoogle={query}&start={pageno}
+    search_url: https://hoogle.haskell.org/?hoogle={query}
     results_xpath: '//div[@class="result"]'
     title_xpath: './/div[@class="ans"]//a'
     url_xpath: './/div[@class="ans"]//a/@href'
@@ -1053,7 +1068,7 @@ engines:
 
   - name: lobste.rs
     engine: xpath
-    search_url: https://lobste.rs/search?utf8=%E2%9C%93&q={query}&what=stories&order=relevance
+    search_url: https://lobste.rs/search?q={query}&what=stories&order=relevance
     results_xpath: //li[contains(@class, "story")]
     url_xpath: .//a[@class="u-url"]/@href
     title_xpath: .//a[@class="u-url"]
@@ -1158,6 +1173,17 @@ engines:
   #   collection: 'reviews'  # name of the db collection
   #   key: 'name'  # key in the collection to search for
 
+  - name: mozhi
+    engine: mozhi
+    base_url:
+      - https://mozhi.aryak.me
+      - https://translate.bus-hit.me
+      - https://nyc1.mz.ggtyler.dev
+    # mozhi_engine: google - see https://mozhi.aryak.me for supported engines
+    timeout: 4.0
+    shortcut: mz
+    disabled: true
+
   - name: mwmbl
     engine: mwmbl
     # api_url: https://api.mwmbl.org
@@ -1165,26 +1191,10 @@ engines:
     disabled: true
 
   - name: npm
-    engine: json_engine
-    paging: true
-    first_page_num: 0
-    search_url: https://api.npms.io/v2/search?q={query}&size=25&from={pageno}
-    results_query: results
-    url_query: package/links/npm
-    title_query: package/name
-    content_query: package/description
-    page_size: 25
-    categories: [it, packages]
-    disabled: true
-    timeout: 5.0
+    engine: npm
     shortcut: npm
-    about:
-      website: https://npms.io/
-      wikidata_id: Q7067518
-      official_api_documentation: https://api-docs.npms.io/
-      use_official_api: false
-      require_api_key: false
-      results: JSON
+    timeout: 5.0
+    disabled: true
 
   - name: nyaa
     engine: nyaa
@@ -1206,6 +1216,14 @@ engines:
       use_official_api: true
       require_api_key: false
       results: JSON
+
+  # read https://docs.searxng.org/dev/engines/online/mullvad_leta.html
+  # - name: mullvadleta
+  #   engine: mullvad_leta
+  #   use_cache: true  # Only 100 non-cache searches per day, suggested only for private instances
+  #   search_url: https://leta.mullvad.net
+  #   categories: [general, web]
+  #   shortcut: ml
 
   - name: odysee
     engine: odysee
@@ -1345,6 +1363,31 @@ engines:
     url: https://thepiratebay.org/
     timeout: 3.0
 
+  - name: pixiv
+    shortcut: pv
+    engine: pixiv
+    disabled: true
+    inactive: true
+    pixiv_image_proxies:
+      - pximg.example.org
+      # A proxy is required to load the images. Hosting an image proxy server
+      # for Pixiv:
+      #    --> https://codeberg.org/VnPower/PixivFE/wiki/Hosting-an-image-proxy-server-for-Pixiv
+      # Proxies from public instances.  Ask the public instances owners if they
+      # agree to receive traffic from SearXNG!
+      #    --> https://codeberg.org/VnPower/PixivFE#instances
+      #    --> https://github.com/searxng/searxng/pull/3192#issuecomment-1941095047
+      # image proxy of https://pixiv.cat
+      # - https://i.pixiv.cat
+      # image proxy of https://www.pixiv.pics
+      # - https://pximg.cocomi.eu.org
+      # image proxy of https://pixivfe.exozy.me
+      # - https://pximg.exozy.me
+      # image proxy of https://pixivfe.ducks.party
+      # - https://pixiv.ducks.party
+      # image proxy of https://pixiv.perennialte.ch
+      # - https://pximg.perennialte.ch
+
   - name: podcastindex
     engine: podcastindex
     shortcut: podcast
@@ -1421,23 +1464,7 @@ engines:
 
   - name: pypi
     shortcut: pypi
-    engine: xpath
-    paging: true
-    search_url: https://pypi.org/search/?q={query}&page={pageno}
-    results_xpath: /html/body/main/div/div/div/form/div/ul/li/a[@class="package-snippet"]
-    url_xpath: ./@href
-    title_xpath: ./h3/span[@class="package-snippet__name"]
-    content_xpath: ./p
-    suggestion_xpath: /html/body/main/div/div/div/form/div/div[@class="callout-block"]/p/span/a[@class="link"]
-    first_page_num: 1
-    categories: [it, packages]
-    about:
-      website: https://pypi.org
-      wikidata_id: Q2984686
-      official_api_documentation: https://warehouse.readthedocs.io/api-reference/index.html
-      use_official_api: false
-      require_api_key: false
-      results: HTML
+    engine: pypi
 
   - name: qwant
     qwant_categ: web
@@ -1544,7 +1571,7 @@ engines:
   - name: internetarchivescholar
     engine: internet_archive_scholar
     shortcut: ias
-    timeout: 5.0
+    timeout: 15.0
 
   - name: superuser
     engine: stackexchange
@@ -1555,11 +1582,6 @@ engines:
   - name: searchcode code
     engine: searchcode_code
     shortcut: scc
-    disabled: true
-
-  - name: framalibre
-    engine: framalibre
-    shortcut: frl
     disabled: true
 
   # - name: searx
@@ -1834,6 +1856,16 @@ engines:
     about:
       website: https://species.wikimedia.org/
       wikidata_id: Q13679
+    tests:
+      wikispecies:
+        matrix:
+          query: "Campbell, L.I. et al. 2011: MicroRNAs"
+          lang: en
+        result_container:
+          - not_empty
+          - ['one_title_contains', 'Tardigrada']
+        test:
+          - unique_results
 
   - name: wiktionary
     engine: mediawiki
@@ -1971,7 +2003,7 @@ engines:
     search_url: https://search.naver.com/search.naver?where=webkr&sm=osp_hty&ie=UTF-8&query={query}&start={pageno}
     url_xpath: //a[@class="link_tit"]/@href
     title_xpath: //a[@class="link_tit"]
-    content_xpath: //a[@class="total_dsc"]/div
+    content_xpath: //div[@class="total_dsc_wrap"]/a
     first_page_num: 1
     page_size: 10
     disabled: true
@@ -2127,6 +2159,11 @@ engines:
     engine: tootfinder
     shortcut: toot
 
+  - name: voidlinux
+    engine: voidlinux
+    shortcut: void
+    disabled: true
+
   - name: wallhaven
     engine: wallhaven
     # api_key: abcdefghijklmnopqrstuvwxyz
@@ -2204,20 +2241,8 @@ engines:
 
   - name: lib.rs
     shortcut: lrs
-    engine: xpath
-    search_url: https://lib.rs/search?q={query}
-    results_xpath: /html/body/main/div/ol/li/a
-    url_xpath: ./@href
-    title_xpath: ./div[@class="h"]/h4
-    content_xpath: ./div[@class="h"]/p
-    categories: [it, packages]
+    engine: lib_rs
     disabled: true
-    about:
-      website: https://lib.rs
-      wikidata_id: Q113486010
-      use_official_api: false
-      require_api_key: false
-      results: HTML
 
   - name: sourcehut
     shortcut: srht
@@ -2264,21 +2289,9 @@ engines:
     shortcut: bt4g
 
   - name: pkg.go.dev
-    engine: xpath
+    engine: pkg_go_dev
     shortcut: pgo
-    search_url: https://pkg.go.dev/search?limit=100&m=package&q={query}
-    results_xpath: /html/body/main/div[contains(@class,"SearchResults")]/div[not(@class)]/div[@class="SearchSnippet"]
-    url_xpath: ./div[@class="SearchSnippet-headerContainer"]/h2/a/@href
-    title_xpath: ./div[@class="SearchSnippet-headerContainer"]/h2/a
-    content_xpath: ./p[@class="SearchSnippet-synopsis"]
-    categories: [packages, it]
-    timeout: 3.0
     disabled: true
-    about:
-      website: https://pkg.go.dev/
-      use_official_api: false
-      require_api_key: false
-      results: HTML
 
 # Doku engine lets you access to any Doku wiki instance:
 # A public one or a privete/corporate one.
