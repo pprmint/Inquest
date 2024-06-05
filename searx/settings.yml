@@ -220,7 +220,7 @@ outgoing:
 #   - 'Ahmia blacklist'  # activation depends on outgoing.using_tor_proxy
 #   # these plugins are disabled if nothing is configured ..
 #   - 'Hostname replace'  # see hostname_replace configuration below
-#   - 'Calculator plugin'
+#   - 'Basic Calculator'
 #   - 'Open Access DOI rewrite'
 #   - 'Tor check plugin'
 #   # Read the docs before activate: auto-detection of the language could be
@@ -727,6 +727,11 @@ engines:
     shortcut: fd
     disabled: true
 
+  - name: findthatmeme
+    engine: findthatmeme
+    shortcut: ftm
+    disabled: true
+
   - name: flickr
     categories: images
     shortcut: fl
@@ -923,6 +928,9 @@ engines:
     engine: hex
     shortcut: hex
     disabled: true
+    # Valid values: name inserted_at updated_at total_downloads recent_downloads
+    sort_criteria: "recent_downloads"
+    page_size: 10
 
   - name: crates.io
     engine: crates
