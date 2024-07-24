@@ -13,21 +13,54 @@ other features.
    **To maintainers of SearXNG instances, please modify your old plugin config
    to the new.**
 
-- ``hostnames.replace``: A mapping of regular expressions to hostnames to be
+- ``hostnames.replace``: A **mapping** of regular expressions to hostnames to be
   replaced by other hostnames.
 
-- ``hostnames.remove``: A list of regular expressions of the hostnames whose
+  .. code:: yaml
+
+     hostnames:
+       replace:
+         '(.*\\.)?youtube\\.com$': 'invidious.example.com'
+         '(.*\\.)?youtu\\.be$': 'invidious.example.com'
+         ...
+
+- ``hostnames.remove``: A **list** of regular expressions of the hostnames whose
   results should be taken from the results list.
 
-- ``hostnames.high_priority``: A list of regular expressions for hostnames whose
-  result should be given higher priority. The results from these hosts are
+  .. code:: yaml
+
+     hostnames:
+       remove:
+         - '(.*\\.)?facebook.com$'
+         - ...
+
+- ``hostnames.high_priority``: A **list** of regular expressions for hostnames
+  whose result should be given higher priority. The results from these hosts are
   arranged higher in the results list.
 
-- ``hostnames.lower_priority``: A list of regular expressions for hostnames
+  .. code:: yaml
+
+     hostnames:
+       high_priority:
+         - '(.*\\.)?wikipedia.org$'
+         - ...
+
+- ``hostnames.lower_priority``: A **list** of regular expressions for hostnames
   whose result should be given lower priority. The results from these hosts are
   arranged lower in the results list.
 
-Alternatively, a file name can also be specified for the mappings or lists:
+  .. code:: yaml
+
+     hostnames:
+       low_priority:
+         - '(.*\\.)?google(\\..*)?$'
+         - ...
+
+If the URL matches the pattern of ``high_priority`` AND ``low_priority``, the
+higher priority wins over the lower priority.
+
+Alternatively, you can also specify a file name for the **mappings** or
+**lists** to load these from an external file:
 
 .. code:: yaml
 
@@ -35,13 +68,13 @@ Alternatively, a file name can also be specified for the mappings or lists:
      replace: 'rewrite-hosts.yml'
      remove:
        - '(.*\\.)?facebook.com$'
-       ...
+       - ...
      low_priority:
        - '(.*\\.)?google(\\..*)?$'
-       ...
+       - ...
      high_priority:
        - '(.*\\.)?wikipedia.org$'
-       ...
+       - ...
 
 The ``rewrite-hosts.yml`` from the example above must be in the folder in which
 the ``settings.yml`` file is already located (``/etc/searxng``). The file then
@@ -63,7 +96,7 @@ from flask_babel import gettext
 
 from searx import settings
 from searx.plugins import logger
-from searx.settings_loader import get_yaml_file
+from searx.settings_loader import get_yaml_cfg
 
 name = gettext('Hostnames plugin')
 description = gettext('Rewrite hostnames, remove results or prioritize them based on the hostname')
@@ -85,7 +118,7 @@ def _load_regular_expressions(settings_key):
 
     # load external file with configuration
     if isinstance(setting_value, str):
-        setting_value = get_yaml_file(setting_value)
+        setting_value = get_yaml_cfg(setting_value)
 
     if isinstance(setting_value, list):
         return {re.compile(r) for r in setting_value}
@@ -130,10 +163,10 @@ def _matches_parsed_url(result, pattern):
 def on_result(_request, _search, result):
     for pattern, replacement in replacements.items():
         if _matches_parsed_url(result, pattern):
-            logger.debug(result['url'])
+            # logger.debug(result['url'])
             result[parsed] = result[parsed]._replace(netloc=pattern.sub(replacement, result[parsed].netloc))
             result['url'] = urlunparse(result[parsed])
-            logger.debug(result['url'])
+            # logger.debug(result['url'])
 
         for url_field in _url_fields:
             if not result.get(url_field):

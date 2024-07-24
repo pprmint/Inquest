@@ -20,13 +20,14 @@
 # Oğuz Ersen <ersen@users.noreply.translate.codeberg.org>, 2024.
 # Quitaxd <Quitaxd@users.noreply.translate.codeberg.org>, 2024.
 # sygmamess <sygmamess@users.noreply.translate.codeberg.org>, 2024.
+# ahmetax <ahmetax@users.noreply.translate.codeberg.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: searx\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-09 15:27+0000\n"
-"PO-Revision-Date: 2024-06-03 14:40+0000\n"
-"Last-Translator: sygmamess <sygmamess@users.noreply.translate.codeberg.org>\n"
+"POT-Creation-Date: 2024-06-17 12:15+0000\n"
+"PO-Revision-Date: 2024-06-25 11:18+0000\n"
+"Last-Translator: ahmetax <ahmetax@users.noreply.translate.codeberg.org>\n"
 "Language-Team: Turkish <https://translate.codeberg.org/projects/searxng/"
 "searxng/tr/>\n"
 "Language: tr\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Weblate 5.5.5\n"
-"Generated-By: Babel 2.14.0\n"
+"Generated-By: Babel 2.15.0\n"
 
 #. CONSTANT_NAMES['NO_SUBGROUPING']
 #: searx/searxng.msg
@@ -185,7 +186,7 @@ msgstr "Hakkında"
 #. WEATHER_TERMS['AVERAGE TEMP.']
 #: searx/searxng.msg
 msgid "Average temp."
-msgstr "Ortalama sıcaklık"
+msgstr "Ortalama sıcaklık."
 
 #. WEATHER_TERMS['CLOUD COVER']
 #: searx/searxng.msg
@@ -220,7 +221,7 @@ msgstr "Rutubet"
 #. WEATHER_TERMS['MAX TEMP.']
 #: searx/searxng.msg
 msgid "Max temp."
-msgstr "Max Sıcaklık"
+msgstr "Max Sıcaklık.."
 
 #. WEATHER_TERMS['MIN TEMP.']
 #: searx/searxng.msg
@@ -321,6 +322,21 @@ msgstr "başlık"
 #: searx/searxng.msg
 msgid "author"
 msgstr "yazar"
+
+#. SOCIAL_MEDIA_TERMS['THREAD OPEN']
+#: searx/engines/discourse.py:121 searx/searxng.msg
+msgid "open"
+msgstr "açık"
+
+#. SOCIAL_MEDIA_TERMS['THREAD CLOSED']
+#: searx/engines/discourse.py:121 searx/searxng.msg
+msgid "closed"
+msgstr "kapalı"
+
+#. SOCIAL_MEDIA_TERMS['THREAD ANSWERED']
+#: searx/engines/discourse.py:132 searx/searxng.msg
+msgid "answered"
+msgstr "yanıtlandı"
 
 #: searx/webapp.py:330
 msgid "No item found"
@@ -510,15 +526,18 @@ msgstr "Dizileri farklı özdeğerlerine çevirir."
 msgid "hash digest"
 msgstr "özdeğer"
 
-#: searx/plugins/hostname_replace.py:12
+#: searx/plugins/hostname_replace.py:7
 msgid "Hostname replace"
 msgstr "Sunucu adını değiştir"
 
-#: searx/plugins/hostname_replace.py:13
-msgid "Rewrite result hostnames or remove results based on the hostname"
+#: searx/plugins/hostnames.py:68
+msgid "Hostnames plugin"
+msgstr "Sunucu adı eklentisi"
+
+#: searx/plugins/hostnames.py:69
+msgid "Rewrite hostnames, remove results or prioritize them based on the hostname"
 msgstr ""
-"Sonuçların sunucu adlarını tekrar yaz ya da sunucu adına göre sonuçları "
-"sil"
+"Sunucu adını tekrar yaz, sonuçları sil veya sunucu adına göre öncelik ver"
 
 #: searx/plugins/oa_doi_rewrite.py:12
 msgid "Open Access DOI rewrite"
@@ -543,6 +562,14 @@ msgid ""
 msgstr ""
 "Sorgu \"ip\" ise IP'nizi ve sorgu \"kullanıcı tanıtıcısı\" içeriyorsa "
 "kullanıcı tanıtıcınızı görüntüler."
+
+#: searx/plugins/self_info.py:28
+msgid "Your IP is: "
+msgstr "IP adresiniz: "
+
+#: searx/plugins/self_info.py:31
+msgid "Your user-agent is: "
+msgstr "Kullanıcı-ajanınız: "
 
 #: searx/plugins/tor_check.py:24
 msgid "Tor check plugin"
@@ -648,22 +675,22 @@ msgstr "Sunucu sahibi ile iletişime geçin"
 msgid "Click on the magnifier to perform search"
 msgstr "Arama yapmak için büyütece tıklayın"
 
-#: searx/templates/simple/macros.html:36
+#: searx/templates/simple/macros.html:35
 msgid "Length"
 msgstr "Uzunluk"
 
-#: searx/templates/simple/macros.html:37
+#: searx/templates/simple/macros.html:36
 #: searx/templates/simple/result_templates/files.html:34
 #: searx/templates/simple/result_templates/images.html:19
 #: searx/templates/simple/result_templates/paper.html:6
 msgid "Author"
 msgstr "Hazırlayan"
 
-#: searx/templates/simple/macros.html:45
+#: searx/templates/simple/macros.html:44
 msgid "cached"
 msgstr "önbellek"
 
-#: searx/templates/simple/macros.html:45
+#: searx/templates/simple/macros.html:44
 msgid "proxied"
 msgstr "proxylendi"
 
@@ -1357,36 +1384,11 @@ msgstr "BU site herhangi bir açıklama sağlamadı."
 msgid "Filesize"
 msgstr "Dosya boyutu"
 
-#: searx/templates/simple/result_templates/files.html:39
-#: searx/templates/simple/result_templates/torrent.html:12
-msgid "Bytes"
-msgstr "Bayt"
-
 #: searx/templates/simple/result_templates/files.html:40
-#: searx/templates/simple/result_templates/torrent.html:13
-msgid "kiB"
-msgstr "kiB"
-
-#: searx/templates/simple/result_templates/files.html:41
-#: searx/templates/simple/result_templates/torrent.html:14
-msgid "MiB"
-msgstr "MiB"
-
-#: searx/templates/simple/result_templates/files.html:42
-#: searx/templates/simple/result_templates/torrent.html:15
-msgid "GiB"
-msgstr "GiB"
-
-#: searx/templates/simple/result_templates/files.html:43
-#: searx/templates/simple/result_templates/torrent.html:16
-msgid "TiB"
-msgstr "TiB"
-
-#: searx/templates/simple/result_templates/files.html:47
 msgid "Date"
 msgstr "Gün"
 
-#: searx/templates/simple/result_templates/files.html:49
+#: searx/templates/simple/result_templates/files.html:42
 #: searx/templates/simple/result_templates/paper.html:24
 msgid "Type"
 msgstr "Yaz"
@@ -1504,7 +1506,7 @@ msgstr "Gönderenler"
 msgid "Leecher"
 msgstr "Çekenler"
 
-#: searx/templates/simple/result_templates/torrent.html:20
+#: searx/templates/simple/result_templates/torrent.html:13
 msgid "Number of Files"
 msgstr "Dosya Sayısı"
 
@@ -1932,3 +1934,23 @@ msgstr "görüntüyü gizle"
 #~ "herhangi bir sonuç bulamadık. Lütfen, "
 #~ "başka bir sorgu kullanın veya daha "
 #~ "fazla kategoride arama yapın."
+
+#~ msgid "Rewrite result hostnames or remove results based on the hostname"
+#~ msgstr ""
+#~ "Sonuçların sunucu adlarını tekrar yaz ya"
+#~ " da sunucu adına göre sonuçları sil"
+
+#~ msgid "Bytes"
+#~ msgstr "Bayt"
+
+#~ msgid "kiB"
+#~ msgstr "kiB"
+
+#~ msgid "MiB"
+#~ msgstr "MiB"
+
+#~ msgid "GiB"
+#~ msgstr "GiB"
+
+#~ msgid "TiB"
+#~ msgstr "TiB"

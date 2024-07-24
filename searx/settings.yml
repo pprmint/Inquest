@@ -78,14 +78,18 @@ server:
   # public URL of the instance, to ensure correct inbound links. Is overwritten
   # by ${SEARXNG_URL}.
   base_url: false  # "http://example.com/location"
-  limiter: false  # rate limit the number of request on the instance, block some bots
-  public_instance: false  # enable features designed only for public instances
+  # rate limit the number of request on the instance, block some bots.
+  # Is overwritten by ${SEARXNG_LIMITER}
+  limiter: false
+  # enable features designed only for public instances.
+  # Is overwritten by ${SEARXNG_PUBLIC_INSTANCE}
+  public_instance: false
 
   # If your instance owns a /etc/searxng/settings.yml file, then set the following
   # values there.
 
   secret_key: "ultrasecretkey"  # Is overwritten by ${SEARXNG_SECRET}
-  # Proxying image results through searx
+  # Proxy image results through SearXNG. Is overwritten by ${SEARXNG_IMAGE_PROXY}
   image_proxy: false
   # 1.0 and 1.1 are supported
   http_protocol_version: "1.0"
@@ -106,6 +110,7 @@ redis:
 ui:
   # Custom static path - leave it blank if you didn't change
   static_path: ""
+  # Is overwritten by ${SEARXNG_STATIC_USE_HASH}.
   static_use_hash: false
   # Custom templates path - leave it blank if you didn't change
   templates_path: ""
@@ -319,6 +324,11 @@ engines:
     engine: 9gag
     shortcut: 9g
     disabled: true
+
+  - name: alpine linux packages
+    engine: alpinelinux
+    disabled: true
+    shortcut: alp
 
   - name: annas archive
     engine: annas_archive
@@ -792,9 +802,13 @@ engines:
     shortcut: gen
 
   - name: gentoo
-    engine: gentoo
+    engine: mediawiki
     shortcut: ge
-    timeout: 10.0
+    categories: ["it", "software wikis"]
+    base_url: "https://wiki.gentoo.org/"
+    api_path: "api.php"
+    search_type: text
+    timeout: 10
 
   - name: gitlab
     engine: json_engine
@@ -1225,6 +1239,7 @@ engines:
   # read https://docs.searxng.org/dev/engines/online/mullvad_leta.html
   # - name: mullvadleta
   #   engine: mullvad_leta
+  #   leta_engine: google # choose one of the following: google, brave
   #   use_cache: true  # Only 100 non-cache searches per day, suggested only for private instances
   #   search_url: https://leta.mullvad.net
   #   categories: [general, web]
@@ -1535,6 +1550,7 @@ engines:
     engine: reddit
     shortcut: re
     page_size: 25
+    disabled: true
 
   - name: rottentomatoes
     engine: rottentomatoes
@@ -2119,21 +2135,25 @@ engines:
     disabled: true
 
   - name: yacy
+    # https://docs.searxng.org/dev/engines/online/yacy.html
     engine: yacy
     categories: general
     search_type: text
     base_url:
       - https://yacy.searchlab.eu
-      - https://search.lomig.me
-      - https://yacy.ecosys.eu
-      - https://search.webproject.link
+      # see https://github.com/searxng/searxng/pull/3631#issuecomment-2240903027
+      # - https://search.kyun.li
+      # - https://yacy.securecomcorp.eu
+      # - https://yacy.myserv.ca
+      # - https://yacy.nsupdate.info
+      # - https://yacy.electroncash.de
     shortcut: ya
     disabled: true
-    # required if you aren't using HTTPS for your local yacy instance
-    # https://docs.searxng.org/dev/engines/online/yacy.html
-    # enable_http: true
-    # timeout: 3.0
-    # search_mode: 'global'
+    # if you aren't using HTTPS for your local yacy instance disable https
+    # enable_http: false
+    search_mode: 'global'
+    # timeout can be reduced in 'local' search mode
+    timeout: 5.0
 
   - name: yacy images
     engine: yacy
