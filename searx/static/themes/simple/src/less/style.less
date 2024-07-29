@@ -423,6 +423,7 @@ article[data-vim-selected].category-social {
 }
 
 @supports not (aspect-ratio: 1 / 1) {
+
   // support older browsers which do not have aspect-ratio
   // https://caniuse.com/?search=aspect-ratio
   .result-videos .embedded-video iframe {
@@ -782,7 +783,7 @@ summary.title {
     padding: 0.4rem;
     margin-left: 0.5rem;
     border-radius: 0.3rem;
-    display: none;    // will be shown by JS.
+    display: none; // will be shown by JS.
   }
 }
 
@@ -1007,6 +1008,7 @@ summary.title {
 }
 
 @media screen and (min-width: @phone) and (max-width: @tablet) {
+
   // when .center-aligment-yes, see style-center.less
   // the media query includes "min-width: @phone"
   // because the phone layout includes the tablet layout unconditionally.
