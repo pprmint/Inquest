@@ -1,10 +1,4 @@
-<p align="center">
-  <a href="https://inquest.fyi" target="_blank">
-    <img height="150" src="/src/brand/searxng-wordmark.svg">
-  </a>
-</p>
-
-# Inquest
+# Inquest. <a href="https://inquest.fyi" target="_blank"><img align="right" height="40" src="/src/brand/searxng-wordmark.svg"></a>
 
 A fork of the privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine).
 
