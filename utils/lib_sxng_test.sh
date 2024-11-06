@@ -11,7 +11,6 @@ test.:
   unit      : run unit tests
   coverage  : run unit tests with coverage
   robot     : run robot test
-  rst       : test .rst files incl. README.rst
   clean     : clean intermediate test stuff
 EOF
 }
@@ -87,20 +86,6 @@ test.robot() {
     gecko.driver
     PYTHONPATH=. pyenv.cmd python -m tests.robot
     dump_return $?
-}
-
-
-test.rst() {
-    build_msg TEST "[reST markup] ${RST_FILES[*]}"
-
-    local rst2html=rst2html
-    if [ "3.8" == "$(python -c 'import sys; print(".".join([str(x) for x in sys.version_info[:2]]))')" ]; then
-       rst2html=rst2html.py
-    fi
-
-    for rst in "${RST_FILES[@]}"; do
-        pyenv.cmd "${rst2html}" --halt error "$rst" > /dev/null || die 42 "fix issue in $rst"
-    done
 }
 
 test.pybabel() {

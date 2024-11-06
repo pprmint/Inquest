@@ -6,9 +6,6 @@ from setuptools import setup, find_packages
 from searx.version import VERSION_TAG, GIT_URL
 from searx import get_setting
 
-with open('README.rst', encoding='utf-8') as f:
-    long_description = f.read()
-
 with open('requirements.txt') as f:
     requirements = [ l.strip() for l in f.readlines()]
 
@@ -20,7 +17,7 @@ setup(
     python_requires=">=3.8",
     version=VERSION_TAG,
     description="A privacy-respecting, hackable metasearch engine",
-    long_description=long_description,
+    long_description="A fork of SearXNG with custom branding and style tweaks.",
     url=get_setting('brand.docs_url'),
     project_urls={
         "Code": GIT_URL,
@@ -61,6 +58,7 @@ setup(
             'data/*.json',
             'data/*.txt',
             'data/*.ftz',
+            'favicons/*.toml',
             'infopage/*/*',
             'static/themes/simple/css/*',
             'static/themes/simple/css/*/*',
