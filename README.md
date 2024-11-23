@@ -1,5 +1,9 @@
 # Inquest. <a href="https://inquest.fyi" target="_blank"><img align="right" height="40" src="/src/brand/searxng-wordmark.svg"></a>
 
+
+> [!WARNING]
+> I stopped using Inquest and switched to DuckDuckGo. This fork will no longer be hosted or maintained. Please use [other instances](https://searx.space/).
+
 A fork of the privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine).
 
 [Searx.space](https://searx.space) lists other ready-to-use running instances. Not mine though.
