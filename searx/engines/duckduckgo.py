@@ -245,10 +245,12 @@ def request(query, params):
 
     # Advanced search syntax ends in CAPTCHA
     # https://duckduckgo.com/duckduckgo-help-pages/results/syntax/
-    query = [
-        x.removeprefix("site:").removeprefix("intitle:").removeprefix("inurl:").removeprefix("filetype:")
-        for x in query.split()
-    ]
+    query = " ".join(
+        [
+            x.removeprefix("site:").removeprefix("intitle:").removeprefix("inurl:").removeprefix("filetype:")
+            for x in query.split()
+        ]
+    )
     eng_region = traits.get_region(params['searxng_locale'], traits.all_locale)
     if eng_region == "wt-wt":
         # https://html.duckduckgo.com/html sets an empty value for "all".
@@ -379,7 +381,11 @@ def response(resp):
     zero_click_info_xpath = '//div[@id="zero_click_abstract"]'
     zero_click = extract_text(eval_xpath(doc, zero_click_info_xpath)).strip()
 
-    if zero_click and "Your IP address is" not in zero_click and "Your user agent:" not in zero_click:
+    if zero_click and (
+        "Your IP address is" not in zero_click
+        and "Your user agent:" not in zero_click
+        and "URL Decoded:" not in zero_click
+    ):
         current_query = resp.search_params["data"].get("q")
 
         results.append(
